@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Entity\User;
+use Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 
 class UserController extends AbstractController
@@ -23,12 +23,9 @@ class UserController extends AbstractController
         $user->setUsername($data->username);
         $user->setPassword($data->password);
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($user);
-
-        // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new user with id '.$user->getId());
+        return new Response(json_encode($user));
     }
 }
