@@ -26,7 +26,7 @@ class AuthController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $data = json_decode($request->getContent());
-        
+
         $user = $repository->findOneBy(['username'=> $data->username]); 
 
         $factory = new PasswordHasherFactory([
