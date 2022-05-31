@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
+import TodoContext from "../contexts/TodoContext";
 
 const style = {
   position: "absolute",
@@ -22,7 +23,9 @@ const style = {
 };
 
 function NewListButton() {
+  const { createList } = React.useContext(TodoContext);
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -47,12 +50,21 @@ function NewListButton() {
             Text in a modal
           </Typography>
           <TextField
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
             sx={{ marginTop: 2, width: "100%" }}
             label="Nom de la liste"
             variant="standard"
           />
           <br />
-          <Button variant="contained" sx={{ marginTop: 2 }}>
+          <Button
+            onClick={() => {
+              handleClose();
+              createList(value);
+            }}
+            variant="contained"
+            sx={{ marginTop: 2 }}
+          >
             Creer
           </Button>
         </Box>

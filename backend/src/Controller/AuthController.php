@@ -49,7 +49,7 @@ class AuthController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return new JsonResponse(json_decode($serializer->serialize($user, 'json')));
+        return new JsonResponse(json_decode($serializer->serialize($user, 'json', ['groups' => ['list']])));
     }
  
     #[Route('/auth/register', name: 'register', methods: ['POST'])]
@@ -75,6 +75,6 @@ class AuthController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return new JsonResponse(json_decode($serializer->serialize($user, 'json')));
+        return new JsonResponse(json_decode($serializer->serialize($user, 'json', ['groups' => ['list']])));
     }
 }

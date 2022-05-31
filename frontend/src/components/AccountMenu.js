@@ -27,7 +27,7 @@ export default function AccountMenu() {
   return (
     <Grid sx={{ display: "inline-flex", marginTop: 1 }}>
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      <Typography>{JSON.parse(user).username}</Typography>
+      <Typography>{user?.username}</Typography>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Account settings">
           <IconButton

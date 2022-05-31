@@ -4,36 +4,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TodoItem from "./TodoItem";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import TodoContext from "../contexts/TodoContext";
 
-const testTodos = [
-  {
-    id: 1,
-    text: "I am a todo",
-    done: false,
-  },
-  {
-    id: 2,
-    text: "I am a todo",
-    done: false,
-  },
-  {
-    id: 3,
-    text: "I am a todo",
-    done: true,
-  },
-  {
-    id: 4,
-    text: "I am a todo",
-    done: false,
-  },
-];
+function TodoList() {
+  const { lists, selectedList, createTodo } = useContext(TodoContext);
 
-function TodoList({ id }) {
-  const [todos, setTodos] = useState(testTodos);
+  const todos = lists.find((value) => value.id === selectedList)?.todos;
 
+  console.log(todos);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sx={{ marginBottom: 1 }}>
@@ -42,11 +23,19 @@ function TodoList({ id }) {
         </Typography>
       </Grid>
       <Grid item sx={12}>
-        {todos.map((todo) => (
-          <TodoItem id={todo.id} text={todo.text} done={todo.done} />
-        ))}
+        {todos &&
+          todos.map((todo) => (
+            <TodoItem
+              id={todo.id}
+              text={todo.value}
+              defaultIsDone={todo.isDone}
+            />
+          ))}
         <ListItem key={"Ajouter un todo"} disablePadding>
-          <ListItemButton sx={{ borderRadius: 2 }}>
+          <ListItemButton
+            onClick={() => createTodo("", selectedList)}
+            sx={{ borderRadius: 2 }}
+          >
             <ListItemIcon>
               <AddCircleOutlineIcon />
             </ListItemIcon>

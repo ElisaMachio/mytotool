@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TodoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TodoRepository::class)]
 class Todo
@@ -11,14 +12,17 @@ class Todo
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["list"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["list"])]
     private $value;
 
     #[ORM\Column(type: 'boolean')]
-    private $isDone;
-
+    #[Groups(["list"])]
+    private $isDone = FALSE;
+    
     #[ORM\ManyToOne(targetEntity: TodoList::class, inversedBy: 'todos')]
     #[ORM\JoinColumn(nullable: false)]
     private $todoList;

@@ -1,18 +1,32 @@
-import { useState } from "react";
+import * as React from "react";
 import { BACKEND_URL } from "../config";
 import postData from "../utils/postData";
 import useStorage from "./useStorage";
 
 function useAuthentication() {
-  const [user, updateUser, deleteUser] = useStorage("user");
+  const [user, setUser] = React.useState();
   const [token, updateToken, deleteToken] = useStorage("user_token");
+
+  React.useEffect(() => {
+    if (token !== undefined) {
+      postData(`${BACKEND_URL}/user/me`, { token: token })
+        .then((data) => {
+          if (Object.keys(data).length !== 0) {
+            setUser(data);
+          } else {
+            logout();
+          }
+        })
+        .catch(() => logout());
+    }
+  }, [token]);
 
   const signIn = (username, password) => {
     postData(`${BACKEND_URL}/auth/login`, {
       username,
       password,
     }).then((response) => {
-      updateUser(JSON.stringify(response));
+      setUser(JSON.stringify(response));
       updateToken(response.token);
     });
   };
@@ -26,7 +40,6 @@ function useAuthentication() {
 
   const logout = () => {
     deleteToken();
-    deleteUser();
   };
 
   return {

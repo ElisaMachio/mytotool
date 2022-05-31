@@ -6,23 +6,27 @@ use App\Repository\TodoListRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TodoListRepository::class)]
 class TodoList
 {
+    #[Groups(["list"])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
+    
+    #[Groups(["list"])]
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
-
+    
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'todoLists')]
     #[ORM\JoinColumn(nullable: false)]
     private $owner;
 
-    #[ORM\OneToMany(mappedBy: 'todolist', targetEntity: Todo::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'todoList', targetEntity: Todo::class, orphanRemoval: true)]
+    #[Groups(["list"])]
     private $todos;
 
     public function __construct()

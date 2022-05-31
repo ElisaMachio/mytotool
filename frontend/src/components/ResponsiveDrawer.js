@@ -9,48 +9,20 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ListIcon from "@mui/icons-material/List";
 import AccountMenu from "./AccountMenu";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
 import NewListButton from "./NewListButton";
-import AuthContext from "../contexts/AuthContext";
+import TodoContext from "../contexts/TodoContext";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 const drawerWidth = 240;
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
-const testLists = [
-  {
-    id: 1,
-    title: "List Title",
-  },
-  {
-    id: 2,
-    title: "List Title",
-  },
-  {
-    id: 3,
-    title: "List Title",
-  },
-];
 
 function ResponsiveDrawer(props) {
   const { window, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [lists, setLists] = React.useState(testLists);
+  const { lists, selectedList, setSelectedList, deleteList } =
+    React.useContext(TodoContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -61,12 +33,21 @@ function ResponsiveDrawer(props) {
       <AccountMenu />
       <List>
         {lists.map((list, index) => (
-          <ListItem key={list.id} disablePadding>
-            <ListItemButton>
+          <ListItem
+            selected={list.id === selectedList}
+            key={list.id}
+            disablePadding
+          >
+            <ListItemButton onClick={() => setSelectedList(list.id)}>
               <ListItemIcon>
                 <ListIcon />
               </ListItemIcon>
               <ListItemText primary={list.title} />
+            </ListItemButton>
+            <ListItemButton onClick={() => deleteList(list.id)}>
+              <IconButton>
+                <CloseIcon />
+              </IconButton>
             </ListItemButton>
           </ListItem>
         ))}
