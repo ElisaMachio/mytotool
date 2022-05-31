@@ -17,9 +17,13 @@ import Copyright from "../components/Copyright";
 const theme = createTheme();
 
 export default function SignUp() {
+  const { signUp } = React.useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    signIn(data.get("username"), data.get("password"));
+    navigate("/signin", { replace: true });
     console.log({
       username: data.get("username"),
       password: data.get("password"),
