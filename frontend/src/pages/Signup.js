@@ -13,10 +13,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Copyright from "../components/Copyright";
+import AuthContext from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const { signUp } = React.useContext(AuthContext);
 
   const handleSubmit = (event) => {
