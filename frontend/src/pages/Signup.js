@@ -22,7 +22,7 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    signIn(data.get("username"), data.get("password"));
+    signUp(data.get("username"), data.get("password"));
     navigate("/signin", { replace: true });
     console.log({
       username: data.get("username"),
