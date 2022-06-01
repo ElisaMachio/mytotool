@@ -17,3 +17,4 @@ async function deleteData(url = "", data = {}) {
 }
 
 export default deleteData;
+// supprimer les données relié à la BDD

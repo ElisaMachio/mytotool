@@ -1,3 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+<!-- Un fichier robots.txt indique aux robots d'exploration 
+d'un moteur de recherche les URL auxquelles il peut accéder sur votre site.
+Son objectif principal est d'éviter de surcharger votre site de demandes. -->
