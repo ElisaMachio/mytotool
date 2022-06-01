@@ -3,6 +3,7 @@ import React from "react";
 import TodoContext from "../contexts/TodoContext";
 import useTodoList from "../hooks/useTodoList";
 
+// Mis en place du context via le provider
 const TodoProvider = ({ children }) => {
   const {
     lists,
@@ -34,4 +35,3 @@ const TodoProvider = ({ children }) => {
 };
 
 export default TodoProvider;
-// action todolist

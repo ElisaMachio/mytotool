@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
+// Copyright
 function Copyright(props) {
   return (
     <Typography

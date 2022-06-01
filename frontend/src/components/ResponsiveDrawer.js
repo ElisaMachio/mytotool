@@ -18,9 +18,11 @@ import IconButton from "@mui/material/IconButton";
 
 const drawerWidth = 240;
 
+// Menu qui s'affiche avec la liste des todoliste cliquable
 function ResponsiveDrawer(props) {
   const { window, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // Recupere les donnees et fonction du contexte
   const { lists, selectedList, setSelectedList, deleteList } =
     React.useContext(TodoContext);
 
@@ -32,6 +34,7 @@ function ResponsiveDrawer(props) {
     <div>
       <AccountMenu />
       <List>
+        {/* Renvoie une liste de lien clickable dans le menu avec le nom de chaque todolist */}
         {lists.map((list, index) => (
           <ListItem
             selected={list.id === selectedList}

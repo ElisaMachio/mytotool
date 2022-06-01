@@ -22,11 +22,17 @@ const style = {
   p: 4,
 };
 
+// Bouton pour ajouter une nouvelle liste
 function NewListButton() {
+  // createList envoie une requete pour creer une nouvelle liste
   const { createList } = React.useContext(TodoContext);
+  // Statut de la modal ouverte ou fermer
   const [open, setOpen] = React.useState(false);
+  // Valeur du text de la modal
   const [value, setValue] = React.useState("");
+  // Ouvre la modal
   const handleOpen = () => setOpen(true);
+  // Ferme la modal
   const handleClose = () => setOpen(false);
 
   return (

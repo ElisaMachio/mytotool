@@ -9,12 +9,12 @@ import TodoItem from "./TodoItem";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import TodoContext from "../contexts/TodoContext";
 
+// Affiche le nom de la todolist et les lignes des todos
 function TodoList() {
   const { lists, selectedList, createTodo } = useContext(TodoContext);
 
   const todos = lists.find((value) => value.id === selectedList)?.todos;
 
-  console.log(todos);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sx={{ marginBottom: 1 }}>
@@ -48,4 +48,3 @@ function TodoList() {
 }
 
 export default TodoList;
-//Cases des todolist

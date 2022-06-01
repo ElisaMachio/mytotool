@@ -13,13 +13,21 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Grid } from "@mui/material";
 import AuthContext from "../contexts/AuthContext";
 
+// Menu qui s'affiche en haut a gauche de la page avec les donnes de l'utilisteurs
+// et permettant de se deconnecter
 export default function AccountMenu() {
+  // Recuperation des donnes du context AuthContext React
   const { user, logout } = React.useContext(AuthContext);
+  // State permettant de gerer le placement du menu
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // Menu ouvert ou ferme
   const open = Boolean(anchorEl);
+
+  // Gere le click pour ouvrir le menu
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  // Ferme le menu
   const handleClose = () => {
     setAnchorEl(null);
   };

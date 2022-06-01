@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
+// Page d'inscription
 export default function SignUp() {
   const navigate = useNavigate();
   const { signUp } = React.useContext(AuthContext);
@@ -119,5 +120,3 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
-
-// page inscription

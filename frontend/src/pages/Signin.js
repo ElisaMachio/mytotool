@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
+// Page de connexion
 export default function SignIn() {
   const navigate = useNavigate();
   const { signIn } = React.useContext(AuthContext);

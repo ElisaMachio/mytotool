@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
+// Context pour acceder au donnes depuis n'importe ou
 const defaultContext = {
   lists: undefined,
   createList: undefined,

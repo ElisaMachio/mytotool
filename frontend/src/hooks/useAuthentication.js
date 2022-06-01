@@ -3,10 +3,13 @@ import { BACKEND_URL } from "../config";
 import postData from "../utils/postData";
 import useStorage from "./useStorage";
 
+// Hook avec qui permet l'authentification de l'utilisateur
 function useAuthentication() {
   const [user, setUser] = React.useState();
+  // stock le token dans le navigateur
   const [token, updateToken, deleteToken] = useStorage("user_token");
 
+  // Recuepere les donnes de l'utilisteur si token a jour
   React.useEffect(() => {
     if (token !== undefined) {
       postData(`${BACKEND_URL}/user/me`, { token: token })
@@ -21,6 +24,7 @@ function useAuthentication() {
     }
   }, [token]);
 
+  // Fonction pour se connecter
   const signIn = (username, password) => {
     postData(`${BACKEND_URL}/auth/login`, {
       username,
@@ -31,6 +35,7 @@ function useAuthentication() {
     });
   };
 
+  // Fonction pour s'enregistrer
   const signUp = (username, password) => {
     postData(`${BACKEND_URL}/auth/register`, {
       username,

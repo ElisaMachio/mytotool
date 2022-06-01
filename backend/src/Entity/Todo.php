@@ -6,9 +6,11 @@ use App\Repository\TodoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+// Entite Todo
 #[ORM\Entity(repositoryClass: TodoRepository::class)]
 class Todo
 {
+    // Attributs prive non accessible de l'exterieur
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -27,6 +29,7 @@ class Todo
     #[ORM\JoinColumn(nullable: false)]
     private $todoList;
 
+    // Getter et setters
     public function getId(): ?int
     {
         return $this->id;

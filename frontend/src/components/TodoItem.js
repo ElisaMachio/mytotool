@@ -8,24 +8,23 @@ import TodoContext from "../contexts/TodoContext";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+// Ligne d'un todo avec checkbox et textinput
 function TodoItem({ id, text, defaultIsDone }) {
   const [focus, setFocus] = React.useState(false);
   const [isDone, setIsDone] = React.useState(defaultIsDone);
   const [textValue, setTextValue] = React.useState(text);
   const { deleteTodo, updateTodo } = React.useContext(TodoContext);
 
+  // Gere le focus d'un input
   const handleFocus = () => {
     setFocus(true);
   };
 
+  // Gere la sortie du curseur d'un input
   const handleBlur = () => {
     setFocus(false);
     updateTodo(id, textValue, isDone);
   };
-
-  // React.useEffect(() => {
-  //   updateTodo(id, textValue, isDone);
-  // }, [id, textValue, isDone]);
 
   return (
     <>

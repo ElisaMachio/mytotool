@@ -5,11 +5,13 @@ import deleteData from "../utils/deleteData";
 import postData from "../utils/postData";
 import updateData from "../utils/updateData";
 
+// Fonction pour gerer toute les requetes en lien avec les todolists et todos
 function useTodoList() {
   const { token } = React.useContext(AuthContext);
   const [lists, setLists] = React.useState([]);
   const [selectedList, setSelectedList] = React.useState(1);
 
+  // Met a jour le state de lists
   const updateLists = (response) => {
     let newLists = [...lists];
     let index = lists.findIndex((list) => list.id === response.id);
@@ -21,6 +23,7 @@ function useTodoList() {
     setLists(newLists);
   };
 
+  // Recupere les todolists
   const fetchNewLists = () => {
     postData(`${BACKEND_URL}/user/me`, { token: token }).then((data) => {
       if (Object.keys(data).length !== 0) {
@@ -36,6 +39,7 @@ function useTodoList() {
     }
   }, [token]);
 
+  // Creer une liste
   const createList = (title) => {
     postData(`${BACKEND_URL}/list`, {
       token,
@@ -45,6 +49,7 @@ function useTodoList() {
     });
   };
 
+  // Supprime une liste
   const deleteList = (id) => {
     deleteData(`${BACKEND_URL}/list`, {
       id,
@@ -54,6 +59,7 @@ function useTodoList() {
     });
   };
 
+  // Creer un todo
   const createTodo = (value, todoListId) => {
     postData(`${BACKEND_URL}/list/todo`, {
       token,
@@ -64,6 +70,7 @@ function useTodoList() {
     });
   };
 
+  // Met a jour un todo
   const updateTodo = (id, value, isDone) => {
     console.log(id, value, isDone);
     updateData(`${BACKEND_URL}/list/todo`, {
@@ -77,6 +84,7 @@ function useTodoList() {
     });
   };
 
+  // Delete un todo
   const deleteTodo = (id) => {
     deleteData(`${BACKEND_URL}/list/todo`, {
       id,

@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class UserController extends AbstractController
 {
+    // Requete permetant de recuperer les donnees de l'utilisateur connecte
     #[Route('/user/me', name: 'me', methods: ['POST'])]
     public function me(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, UserRepository $repository): Response
     {

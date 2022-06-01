@@ -17,4 +17,4 @@ async function updateData(url = "", data = {}) {
 }
 
 export default updateData;
-// Mise à jour relier à la BDD
+// envoie une requete pour mise à jour relier à la BDD

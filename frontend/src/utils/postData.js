@@ -17,4 +17,4 @@ async function postData(url = "", data = {}) {
 }
 
 export default postData;
-//Ajout de donnée relier à la BDD
+// envoie une requete pour ajout de donnée relier à la BDD

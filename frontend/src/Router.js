@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthContext from "./contexts/AuthContext";
 
+// Router qui permet de gerer les urls de chaque page
 function Router() {
   const { token } = React.useContext(AuthContext);
 
